@@ -68,12 +68,13 @@ unionV v1 v2 = V.create (mnew (V.length v1 + V.length v2) >>= go 0 0 0)
                      in case compare e1 e2 of
                           LT -> do
                             mwrite target tindex e1
-                            -- pure target
+                            pure target
                             go (sindex1 + 1) sindex2 (tindex + 1) target
                           EQ -> do
                             mwrite target tindex e1
                             go (sindex1 + 1) (sindex2 + 1) (tindex + 1) target
                           GT -> do
                             mwrite target tindex e2
-                            -- pure target
-                            go sindex1 (sindex2 + 1) (tindex + 1) target
+                            pure target
+                            -- go sindex1 (sindex2 + 1) (tindex + 1) target
+
